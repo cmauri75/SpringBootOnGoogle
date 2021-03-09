@@ -1,0 +1,13 @@
+version: '2'
+services:
+  mysql-db:
+    image: library/mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=microserv-db
+    ports:
+     - "3306:3306"
+  microserv:
+    image: microserv:latest
+    ports:
+      - "8080:8080"
