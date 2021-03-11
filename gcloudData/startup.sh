@@ -1,0 +1,1 @@
+sudo docker run -p 8080:8080 -d -v  "$(pwd)/config":/config -v "$(pwd)/logs":/logs cmauri75/microserv
