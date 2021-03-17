@@ -1,11 +1,9 @@
 package net.springgooglecloud.microserv.controller;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.springgooglecloud.microserv.entity.DataEntity;
-import net.springgooglecloud.microserv.repository.DataRepository;
-import org.springframework.beans.factory.annotation.Value;
+import net.springgooglecloud.microserv.service.DataService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,15 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class DataController {
 
-    @Value("${db.data}}")
-    String message;
-
-    private final DataRepository dataRepository;
+    private final DataService dataService;
 
     @GetMapping("/data")
     ResponseEntity<String> getData() {
-        log.info("Retrieving data");
-        DataEntity entity = dataRepository.findAll().get(0);
+        log.info("Retrieving data from service");
+        DataEntity entity = dataService.getData();
         return ResponseEntity.ok(entity.getValue());
     }
 }
